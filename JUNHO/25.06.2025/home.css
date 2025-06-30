@@ -1,0 +1,17 @@
+.m-left {
+    margin-left: 4vw;
+}
+
+.SherekImg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 30vw;
+    height: 50vh;
+    animation: pulsar 2s infinite;
+}
+
+@keyframes pulsar {
+    50% {transform: scale(1.2);}
+}
+
