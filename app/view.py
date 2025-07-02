@@ -17,7 +17,8 @@ def homepage():
 
 @app.route('/contato/')
 def novapagina():
+    context = {}
     if request.method == 'GET':
         pesquisa = request.args.get('pesquisa')
         print(pesquisa)
-    return render_template('contato.html')
+    return render_template('contato.html', context=context)
