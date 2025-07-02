@@ -1,6 +1,6 @@
 
 from app import app
-from flask import render_template
+from flask import render_template, url_for, request
 
 @app.route('/')
 def homepage():
@@ -17,4 +17,7 @@ def homepage():
 
 @app.route('/contato/')
 def novapagina():
-    return 'Outra views'
+    if request.method == 'GET':
+        pesquisa = request.args.get('pesquisa')
+        print(pesquisa)
+    return render_template('contato.html')
