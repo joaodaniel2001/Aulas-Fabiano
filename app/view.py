@@ -20,5 +20,5 @@ def novapagina():
     context = {}
     if request.method == 'GET':
         pesquisa = request.args.get('pesquisa')
-        print(pesquisa)
+        context.update({'pesquisa':pesquisa})
     return render_template('contato.html', context=context)

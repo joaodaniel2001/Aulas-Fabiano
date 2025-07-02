@@ -9,6 +9,26 @@
 <body>
 
     <div class="container">
+        <h3> Formulário GET </h3>
+        <div class="row mt-4">
+            <form action="" method="get">
+                <div class="col-9">
+                    <label for="pesquisar"> Barra de pesquisa: </label>
+                    <input type="text" name="pesquisa" id="pesquisar" class="form-control" required>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary mt-4 col-12"> Pesquisar </button>
+                </div>
+            </form>
+            <p> Você pesquisou: {{context['pesquisa']}}</p>
+        </div>
+    </div>
+    
+    <hr>
+    <hr>
+
+    <div class="container">
+        <h3> Formulário POST </h3>
         <div class="row">
             <form action="" method="get">
                 <div class="col-9">
