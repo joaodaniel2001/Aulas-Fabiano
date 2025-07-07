@@ -1,38 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contatos</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row mt-4">
-        <h3>Envio de Contatos</h3>
-      </div>
-      <form action="" method="post" class="row mt-4 p-4 round border shadow">
-        
-        {{form.csrf_token}}
+{% extends 'base.html' %}
 
-        {{form.nome.label()}} <!-- Label nome -->
-        {{form.nome(class="form-control")}} <!-- Input nome -->
+{% block content %}
 
-        {{form.email.label()}} <!-- Label e-mail -->
-        {{form.email(class="form-control")}} <!-- Input e-mail -->
+<div class="container">
+  {% include 'nave.html' %} 
+  <div class="row mt-4">
+    <h3>Envio de Contatos</h3>
+  </div>
+  <form action="" method="post" class="row mt-4 p-4 round border shadow">
 
-        {{form.assunto.label()}} <!-- Label assunto -->
-        {{form.assunto(class="form-control")}}<!-- Input assunto -->
-        
-        {{form.mensagem.label()}} <!-- Label mensagem -->
-        {{form.mensagem(class="form-control")}} <!-- Input mensagem -->
+    {{form.csrf_token}}
 
-        {{form.btnSubmit(class="btn btn-primary col-12")}}
+    {{form.nome.label()}} <!-- Label nome -->
+    {{form.nome(class="form-control")}} <!-- Input nome -->
 
-      </form>
-    </div>
+    {{form.email.label()}} <!-- Label e-mail -->
+    {{form.email(class="form-control")}} <!-- Input e-mail -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-  
-  </body>
-</html>
+    {{form.assunto.label()}} <!-- Label assunto -->
+    {{form.assunto(class="form-control")}}<!-- Input assunto -->
+
+    {{form.mensagem.label()}} <!-- Label mensagem -->
+    {{form.mensagem(class="form-control")}} <!-- Input mensagem -->
+
+    {{form.btnSubmit(class="btn btn-primary col-12")}}
+
+  </form>
+</div>
+
+{% endblock %}
