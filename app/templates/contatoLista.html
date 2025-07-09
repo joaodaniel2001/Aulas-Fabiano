@@ -23,6 +23,7 @@
           <th>E-mail</th>
           <th>Assunto</th>
           <th>Respondido</th>
+          <th>Detalhes</th>
         </thead>
 
         <tbody>
@@ -37,6 +38,9 @@
               {% else %}
               NÃO
               {% endif %}
+            </td>
+            <td><a href="{{url_for('contatoDetail', id=linha.id)}}"> <img
+                  src="{{url_for('static', filename='img/do-utilizador.png')}}" style="width: 20px;"></a>
             </td>
           </tr>
         </tbody>

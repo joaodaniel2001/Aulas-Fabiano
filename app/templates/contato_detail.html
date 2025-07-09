@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    {% include 'nave.html' %}
+
+    <div class="row mt-4">
+
+        <h3> Contato </h3>
+
+        <div class="row mt-4 text-start">
+
+            <div class="col-md-6 mt-4">
+                Nome:
+                <input class="form-control bg-secondary text-white" type="text" value="{{obj.nome}}" readonly>
+            </div>
+
+            <div class="col-md-6 mt-4">
+                E-mail:
+                <input class="form-control bg-secondary text-white" type="text" value="{{obj.email}}" readonly>
+            </div>
+
+            <div class="col-md-12 mt-4">
+                Assunto:
+                <input class="form-control bg-secondary text-white" type="text" value="{{obj.assunto}}" readonly>
+            </div>
+
+            <div class="col-md-12 mt-4">
+                Mensagem:
+                <textarea class="form-control bg-secondary text-white" rows="10" type="text" value="{{obj.mensagem}}" {{obj.mensagem}}></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

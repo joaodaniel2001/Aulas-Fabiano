@@ -43,3 +43,8 @@ def contatoLista ():
         print(linha.respondido)
         
     return render_template('contatoLista.html', context=context)
+
+@app.route('/contato/<int:id>')
+def contatoDetail (id):
+    obj=Contato.query.get(id)
+    return render_template('contato_detail.html', obj=obj)
