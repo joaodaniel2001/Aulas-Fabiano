@@ -1,13 +1,16 @@
 
 from app import app, db
 from flask import render_template, url_for, request, redirect
-from app.forms import ContatoForm
+from app.forms import ContatoForm, UserForm
 from app.models import Contato
+from flask_login import login_user, logout_user, current_user
 
 @app.route('/')
 def homepage():
     usuario = "João Daniel"
     idade = 17
+
+    print(current_user)
 
     context = {
         'usuario': usuario,
@@ -48,3 +51,10 @@ def contatoLista ():
 def contatoDetail (id):
     obj=Contato.query.get(id)
     return render_template('contato_detail.html', obj=obj)
+
+@app.route('/cadastro/', methods=['GET', 'POST'])
+def cadastro ():
+    form = UserForm()
+    if form.validate_on_submit():
+        print(cadastro)
+    return render_template("cadastro.html", form=form)

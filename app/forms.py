@@ -11,11 +11,11 @@ class UserForm (FlaskForm):
     sobrenome = StringField ('Sobrenome', validators=[DataRequired()])
     email = StringField ('E-mail', validators=[DataRequired(), Email()])
     senha = PasswordField('Senha', validators=[DataRequired()])
-    confirmacao_senha = PasswordField('Senha', validators=[DataRequired(), EqualTo('senha')])
+    confirmacao_senha = PasswordField('Confirme sua senha', validators=[DataRequired(), EqualTo('senha')])
     btnSubmit = SubmitField('Cadastrar')
 
     def validade_email(self, email):
-        if User.query.filter(email=email.data).first():
+        if User.query.filter(email==email.data).first():
             return ValidationError('Usuário já cadastrado com esse E-mail!')
 
     def save (self):
