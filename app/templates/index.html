@@ -2,27 +2,39 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container p-3">
     {% include 'nave.html' %}
+    <hr>
 
-    <div>
-        <h3> Projeto Flask </h3>
-        <h5> @senaisc </h5>
+    <div class="p-5">
+
+        {% if current_user.is_authenticated %}
+        <span class="btn btn-primary">{{current_user.nome}} {{current_user.sobrenome}}</span>
+        <a href="{{url_for('logout')}}" class="btn btn-danger">Sair</a>
+        {% else %}
+
+        <form action="" method="post" class="row mt-4 p-4 round border shadow">
+            <h3 class="pb-3 text-center">Faça seu Login:</h3>
+            {{form.csrf_token}}
+
+            {{form.email.label()}}
+            {{form.email(class="form-control")}}
+
+            {{form.senha.label()}}
+            {{form.senha(class="form-control")}}
+
+            {{form.btnSubmit(class="btn btn-primary col-12 mt-3")}}
+
+            <span class="pt-3">
+                Não tem cadastro? <a href="{{url_for('cadastro')}}"> Clique aqui </a>
+            </span>
+        </form>
+
+        {% endif %}
+        <hr>
+
+        <img style="width: 200px;" src="{{url_for('static', filename='img/logo_senai.png')}}">
     </div>
-
-    <div>
-        <br>
-        <br>
-
-        <a href="{{url_for('cadastro')}}" class="btn btn-primary"> Faça seu cadastro</a>
-
-        <h1> Bem-vindo, {{context.usuario}} ! A aula de Flask. </h1>
-        <p style="font-size: 25px;"><b> Idade: <b>{{context.idade}} anos de idade!</p>
-        <img src="{{url_for('static', filename='img/logo_senai.png')}}">
-
-        <br>
-    </div>
-
 </div>
 
 {% endblock %}

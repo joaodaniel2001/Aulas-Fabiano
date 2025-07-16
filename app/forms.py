@@ -4,7 +4,7 @@ from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 from app import db, bcrypt
-from app.models import Contato, User
+from app.models import Contato, User, Post
 
 class UserForm (FlaskForm):
     nome = StringField ('Nome', validators=[DataRequired()])
@@ -15,8 +15,9 @@ class UserForm (FlaskForm):
     btnSubmit = SubmitField('Cadastrar')
 
     def validade_email(self, email):
-        if User.query.filter(email==email.data).first():
-            return ValidationError('Usuário já cadastrado com esse E-mail!')
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('E-mail já cadastrado.')
 
     def save (self):
         senha = bcrypt.generate_password_hash(self.senha.data.encode('utf-8'))
@@ -29,6 +30,26 @@ class UserForm (FlaskForm):
         db.session.add(user)
         db.session.commit()
         return user
+    
+class LoginForm (FlaskForm):
+    email = StringField ('E-mail', validators=[DataRequired(),Email()])
+    senha = PasswordField ('Senha', validators=[DataRequired()])
+    btnSubmit = SubmitField('Login')
+
+    def login (self):
+        # Recuperar o usuário do E-Mail
+        user = User.query.filter_by (email=self.email.data).first()
+
+        # Verificar se a senha é válida
+        if user:
+            if bcrypt.check_password_hash (user.senha, self.senha.data.encode ('utf-8')):
+                # Retorna o usuário
+                return user
+            else:
+                raise Exception ('Senha incorreta!')
+            
+        else:
+            raise Exception ('Usuário não encontrado!')
 
 class ContatoForm (FlaskForm):
     nome = StringField('Nome', validators = [DataRequired()])
@@ -48,3 +69,15 @@ class ContatoForm (FlaskForm):
         db.session.add(contato)
         db.session.commit()
         
+class PostForm (FlaskForm):
+    mensagem = StringField ('Mensagem', validators=[DataRequired()])
+    btnSubmit = SubmitField ('Enviar')
+
+    def save (self, user_id):
+        post = Post (
+            mensagem = self.mensagem.data,
+            user_id = user_id
+        )
+
+        db.session.add()
+        db.session.commit()

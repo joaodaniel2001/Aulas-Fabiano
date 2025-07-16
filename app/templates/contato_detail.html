@@ -2,8 +2,9 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container p-3">
     {% include 'nave.html' %}
+    <hr>
 
     <div class="row mt-4">
 
@@ -28,7 +29,8 @@
 
             <div class="col-md-12 mt-4">
                 Mensagem:
-                <textarea class="form-control bg-secondary text-white" rows="10" type="text" value="{{obj.mensagem}}" {{obj.mensagem}}></textarea>
+                <textarea class="form-control bg-secondary text-white" rows="10" type="text" value="{{obj.mensagem}}"
+                    {{obj.mensagem}}></textarea>
             </div>
         </div>
 

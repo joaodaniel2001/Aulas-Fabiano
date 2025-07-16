@@ -1,53 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container p-3">
 
-<div class="container">
-  {% include 'nave.html' %}
-  <div class="row mt-4">
-    <h3>Lista de Contatos:</h3>
+    {% include 'nave.html' %}
+    <hr>
 
-    <form method="get" class="row">
-      <div class="col-9">
-        <input type="text" name="pesquisa" class="form-control">
-      </div>
-      <div class="col-3">
-        <button type="submit" class="btn btn-primary"> Pesquisar </button>
-      </div>
-    </form>
+    <div class="row mt-4">
+        <h3>Lista de Contatos</h3>
 
-    <div class="col-12">
-      <table class="table">
-        <thead>
-          <th>Nome</th>
-          <th>E-mail</th>
-          <th>Assunto</th>
-          <th>Respondido</th>
-          <th>Detalhes</th>
-        </thead>
+        <form method="get" class="row">
+            <div class="col-9">
+                <input type="text" name="pesquisa" class="form-control">
+            </div>
 
-        <tbody>
-          {% for linha in context['dados'] %}
-          <tr>
-            <td>{{linha.nome}}</td>
-            <td>{{linha.email}}</td>
-            <td>{{linha.assunto}}</td>
-            <td>
-              {% if linha.respondido == 1 %}
-              SIM
-              {% else %}
-              NÃO
-              {% endif %}
-            </td>
-            <td><a href="{{url_for('contatoDetail', id=linha.id)}}"> <img
-                  src="{{url_for('static', filename='img/do-utilizador.png')}}" style="width: 20px;"></a>
-            </td>
-          </tr>
-        </tbody>
-        {% endfor %}
-      </table>
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </div>
+        </form>
+
     </div>
-  </div>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Assunto</th>
+                    <th>Respondido</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for linha in context['dados']%}
+                <tr>
+                    <td>{{linha.nome}}</td>
+                    <td>{{linha.email}}</td>
+                    <td>{{linha.assunto}}</td>
+                    <td>{{linha.respondido}}</td>
+                    <td>
+                        {% if linha.respondido == 1%}
+                        SIM
+                        {% else %}
+                        NÃO
+                        {% endif %}
+
+                    </td>
+                    <td><a href="{{url_for('contatoDetail', id=linha.id)}}" class="btn btn-light px-1 pb-0 -t-0"><img
+                                src="{{url_for('static', filename='img/do-utilizador.png')}}" style="width: 20px;"> </a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}
