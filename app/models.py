@@ -30,3 +30,5 @@ class Post (db.Model):
     mensagem = db.Column (db.String, nullable = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
+    def msg_resumo(self):
+        return f"{self.mensagem[:10]}"

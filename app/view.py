@@ -22,7 +22,7 @@ def homepage():
     return render_template('index.html', context=context, form=form)
 
 # Cadastro
-@app.route('/cadastro/', methods=['GET', 'POST'])
+@app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     form = UserForm()
     if form.validate_on_submit():
@@ -32,13 +32,13 @@ def cadastro():
     return render_template('cadastro.html', form=form)
 
 # Post
-@app.route('/post/novo')
+@app.route('/post/novo', methods=['GET', 'POST'])
 def PostNovo ():
     form = PostForm()
     if form.validate_on_submit():
         form.save(current_user.id)
         return redirect(url_for('homepage'))
-    return render_template('cadastro.html', form=form)
+    return render_template('post_lista.html', form=form)
 
 # Deslogar
 @app.route('/sair/')
@@ -66,8 +66,6 @@ def contatoLista():
     if pesquisa != '':
         dados = dados.filter_by(nome=pesquisa)
     context={'dados': dados.all()}
-
-
     return render_template('contatoLista.html',context=context)
 
 # Contato Detalhado
