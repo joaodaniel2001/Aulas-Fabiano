@@ -83,7 +83,7 @@ class PostForm (FlaskForm):
             user_id = user_id
         )
 
-        db.session.add()
+        db.session.add(post)
         db.session.commit()
         
         return post

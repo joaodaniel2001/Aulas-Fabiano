@@ -38,7 +38,7 @@ def PostNovo ():
     if form.validate_on_submit():
         form.save(current_user.id)
         return redirect(url_for('homepage'))
-    return render_template('post_lista.html', form=form)
+    return render_template('post_novo.html', form=form)
 
 # Deslogar
 @app.route('/sair/')
