@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, url_for, request, redirect
-from app.models import Contato
+from app.models import Contato, Post
 from app.forms import ContatoForm, UserForm, LoginForm, PostForm
 from flask_login import login_user, logout_user, current_user
 
@@ -31,7 +31,7 @@ def cadastro():
         return redirect(url_for('homepage'))
     return render_template('cadastro.html', form=form)
 
-# Post
+# Post Novo
 @app.route('/post/novo', methods=['GET', 'POST'])
 def PostNovo ():
     form = PostForm()
@@ -39,6 +39,13 @@ def PostNovo ():
         form.save(current_user.id)
         return redirect(url_for('homepage'))
     return render_template('post_novo.html', form=form)
+
+# Post Lista
+@app.route('/post/lista/')
+def PostLista():
+    posts = Post.query.all()
+    print(current_user.posts)
+    return render_template('post_lista.html', posts=posts)
 
 # Deslogar
 @app.route('/sair/')

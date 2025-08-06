@@ -21,7 +21,7 @@
       <tbody>
         {%for linha in posts%}
         <tr>
-          <td>{{linha.msg_resumo}}</td>
+          <td>{{linha.msg_resumo()}}</td>
           <td>{{linha.user.nome}}</td>
         <tr>
         </tr>
