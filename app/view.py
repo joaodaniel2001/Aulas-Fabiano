@@ -84,7 +84,6 @@ def contato():
 @login_required
 def contatoLista():
 
-
     if current_user.id == 2: return redirect(url_for('homepage'))
     
     if request.method=='GET':
