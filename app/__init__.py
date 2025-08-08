@@ -18,7 +18,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 login_manager = LoginManager (app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'homepage'
 bcrypt = Bcrypt (app)
  
 from app.view import homepage
