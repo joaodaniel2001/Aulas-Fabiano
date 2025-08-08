@@ -7,7 +7,7 @@ from flask_bcrypt import Bcrypt
 bcrypt=Bcrypt()
 
 from app import db, Bcrypt
-from app.models import Contato, User, Post
+from app.models import Contato, User, Post, PostComentarios
 
 class UserForm (FlaskForm):
     nome = StringField ('Nome', validators=[DataRequired()])
@@ -89,12 +89,12 @@ class PostForm (FlaskForm):
         return post
     
 class PostComentarioForm(FlaskForm):
-    mensagem = StringField('Mensagem', validators=[DataRequired()])
+    comentario = StringField('Comentário', validators=[DataRequired()])
     btnSubmit = SubmitField('Enviar')
 
     def save(self, user_id, post_id):
-        comentario = Post (
-            mensagem=self.mensagem.data,
+        comentario = PostComentarios (
+            comentario=self.comentario.data,
             user_id=user_id,
             post_id=post_id
         )

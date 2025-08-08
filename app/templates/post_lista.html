@@ -15,7 +15,7 @@
         <tr>
           <th>Nome</th>
           <th>Email</th>
-          <th></th>
+          <th>Detalhes</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +23,7 @@
         <tr>
           <td>{{linha.msg_resumo()}}</td>
           <td>{{linha.user.nome}}</td>
+          <td><a href="{{url_for('post_detalhes', id=linha.id)}}">Saiba mais</a></td>
         <tr>
         </tr>
         {% endfor %}
